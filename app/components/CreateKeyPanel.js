@@ -38,8 +38,9 @@ export default function CreateKeyPanel({ role, balance, onCreated, push, token }
   const [licType, setLicType]   = useState("vip");   // "vip" | "global" (dev only)
   const [busy, setBusy]         = useState(false);
 
-  const isDev          = role === "developer";
+  const isDev           = role === "developer";
   const hasCreditSystem = role === "reseller" || role === "admin";
+  const showProduct     = true; // all roles can pick LITE or PRO
 
   const dayOptions = product === "pro" ? PRO_DAY_OPTIONS : LITE_DAY_OPTIONS;
 
@@ -109,8 +110,8 @@ export default function CreateKeyPanel({ role, balance, onCreated, push, token }
 
   return (
     <div>
-      {/* Product tier — dev only */}
-      {isDev && (
+      {/* Product tier — all roles */}
+      {showProduct && (
         <div style={{ marginBottom: 16 }}>
           <div className="field-label">Product</div>
           <div style={{ display:"flex", gap:8 }}>
